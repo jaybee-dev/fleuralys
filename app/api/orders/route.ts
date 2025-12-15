@@ -5,6 +5,7 @@ import { logger, logApiError } from '@/lib/logger'
 
 export async function POST(request: NextRequest) {
   const clientIP = getClientIP(request)
+  let body: any
 
   try {
     // Rate limiting: 5 commandes par heure par IP
@@ -38,7 +39,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const body = await request.json()
+    body = await request.json()
     const { nom, email, telephone, bouquet_id, date_heure, statut } = body
 
     // Validation des champs requis

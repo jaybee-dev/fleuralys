@@ -11,7 +11,6 @@
   "dependencies": {
     "@auth/core": "^0.41.0",
     "@hookform/resolvers": "^5.2.2",
-    "@lemonsqueezy/lemonsqueezy.js": "^4.0.0",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.87.1",
     "@tailwindcss/postcss": "^4.1.17",

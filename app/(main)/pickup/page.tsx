@@ -6,7 +6,6 @@ import * as z from 'zod'
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { bouquets } from '@/data/bouquets'
-import { getCheckoutUrl } from '@/lib/lemonsqueezy'
 
 const commandeSchema = z.object({
   nom: z.string().min(2, 'Le nom doit contenir au moins 2 caracteres'),
@@ -63,18 +62,29 @@ function PickupForm() {
       const result = await response.json()
       const selectedBouquet = bouquets.find((b) => b.id === data.bouquet_id)
 
-      if (selectedBouquet?.lemonsqueezyProductId) {
-        const checkoutUrl = getCheckoutUrl({
-          productId: selectedBouquet.lemonsqueezyProductId,
-          customData: {
+      // Créer une session de paiement Sumup
+      if (selectedBouquet) {
+        const paymentResponse = await fetch('/api/create-payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
             commande_id: result.commande.id,
             bouquet_id: data.bouquet_id,
-            customer_name: data.nom,
+            amount: selectedBouquet.prix,
             customer_email: data.email,
-          },
+            customer_name: data.nom,
+            description: `Bouquet ${selectedBouquet.nom}`,
+          }),
         })
 
-        window.location.href = checkoutUrl
+        if (paymentResponse.ok) {
+          const { paymentUrl } = await paymentResponse.json()
+          window.location.href = paymentUrl
+        } else {
+          setSubmitMessage('Commande creee avec succes! Nous vous contacterons pour le paiement.')
+        }
       } else {
         setSubmitMessage('Commande creee avec succes! Nous vous contacterons pour le paiement.')
       }
