@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import BouquetCard from '@/components/BouquetCard'
+import HorairesWidget from '@/components/HorairesWidget'
 import type { Bouquet } from '@/data/bouquets'
 
 interface HomeClientProps {
@@ -120,8 +121,15 @@ export default function HomeClient({ bouquets }: HomeClientProps) {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-5"></div>
       </section>
 
+      {/* Horaires Section */}
+      <section className="container-custom py-12">
+        <div className="max-w-md mx-auto">
+          <HorairesWidget />
+        </div>
+      </section>
+
       {/* Bouquets Section */}
-      <section id="bouquets" className="container-custom py-16 mt-16 md:mt-20">
+      <section id="bouquets" className="container-custom py-16 mt-8 md:mt-12">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-title font-bold text-neutral-900 mb-4">
             Nos Bouquets

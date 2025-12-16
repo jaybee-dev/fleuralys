@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { verifySumupWebhook, SumupWebhookEvent } from '@/lib/sumup'
 import { supabase } from '@/lib/supabase'
 import { logger, logApiError } from '@/lib/logger'
+import { sendOrderConfirmationEmail, sendFloristNotificationEmail } from '@/lib/email'
 
 /**
  * Webhook Sumup pour gérer les notifications de paiement
@@ -77,18 +78,18 @@ async function handlePaymentSuccess(event: SumupWebhookEvent) {
 
   try {
     // Mettre à jour le statut de la commande dans Supabase
-    const { error } = await supabase
+    const { error: updateError } = await supabase
       .from('commandes')
       .update({
-        statut: 'paid',
-        payment_id: event.checkout_id,
-        payment_status: 'succeeded',
+        statut: 'confirmee',
+        paiement_statut: 'paye',
+        paiement_id: event.checkout_id,
         updated_at: new Date().toISOString(),
       })
       .eq('id', commandeId)
 
-    if (error) {
-      throw error
+    if (updateError) {
+      throw updateError
     }
 
     logger.info('Payment successfully processed', {
@@ -97,8 +98,36 @@ async function handlePaymentSuccess(event: SumupWebhookEvent) {
       amount: event.amount
     })
 
-    // TODO: Envoyer un email de confirmation à la fleuriste
-    // TODO: Envoyer un email de confirmation au client
+    // Récupérer les données complètes de la commande pour envoyer les emails
+    const { data: commande, error: fetchError } = await supabase
+      .from('commandes')
+      .select('*')
+      .eq('id', commandeId)
+      .single()
+
+    if (fetchError || !commande) {
+      logger.error('Failed to fetch order data for email', fetchError as Error, {
+        commande_id: commandeId
+      })
+      // Ne pas faire échouer le webhook si on ne peut pas envoyer les emails
+      return
+    }
+
+    // Envoyer les emails de confirmation (en arrière-plan)
+    Promise.all([
+      sendOrderConfirmationEmail(commande),
+      sendFloristNotificationEmail(commande)
+    ]).catch(err => {
+      logger.error('Failed to send confirmation emails', err as Error, {
+        commande_id: commandeId
+      })
+      // Ne pas faire échouer le webhook si les emails échouent
+    })
+
+    logger.info('Confirmation emails sent', {
+      commande_id: commandeId,
+      customer_email: commande.email
+    })
 
   } catch (error) {
     logger.error('Failed to update payment status', error as Error, {

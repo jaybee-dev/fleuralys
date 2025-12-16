@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import DashboardClient from './DashboardClient'
+import FermeturesClient from './FermeturesClient'
 
-export default async function AdminDashboardPage() {
+export default async function AdminFermeturesPage() {
   const supabase = await createClient()
 
   // Vérifier l'authentification
@@ -15,16 +15,6 @@ export default async function AdminDashboardPage() {
     redirect('/admin/login')
   }
 
-  // Récupérer les commandes
-  const { data: commandes, error } = await supabase
-    .from('commandes')
-    .select('*')
-    .order('created_at', { ascending: false })
-
-  if (error) {
-    console.error('Erreur lors de la récupération des commandes:', error)
-  }
-
   return (
     <div>
       {/* Navbar admin */}
@@ -34,7 +24,7 @@ export default async function AdminDashboardPage() {
             <div className="flex space-x-8">
               <Link
                 href="/admin/dashboard"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-primary-600 text-sm font-medium text-neutral-900"
+                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"
               >
                 Commandes
               </Link>
@@ -52,7 +42,7 @@ export default async function AdminDashboardPage() {
               </Link>
               <Link
                 href="/admin/fermetures"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"
+                className="inline-flex items-center px-1 pt-1 border-b-2 border-primary-600 text-sm font-medium text-neutral-900"
               >
                 Fermetures
               </Link>
@@ -61,7 +51,7 @@ export default async function AdminDashboardPage() {
         </div>
       </nav>
 
-      <DashboardClient commandes={commandes || []} user={user} />
+      <FermeturesClient />
     </div>
   )
 }

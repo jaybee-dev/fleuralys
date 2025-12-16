@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { localBusinessSchema, websiteSchema } from './schema'
+import TestModeBanner from '@/components/TestModeBanner'
 
 export const metadata: Metadata = {
   title: "Fleurs com'Florie - Fleuriste à Villeneuve-Lès-Maguelone",
@@ -59,7 +60,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <TestModeBanner />
+        {children}
+      </body>
     </html>
   )
 }

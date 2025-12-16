@@ -4,6 +4,19 @@
  * Documentation: https://developer.sumup.com/
  */
 
+import {
+  simulateCreateCheckout,
+  simulateGetCheckout,
+  simulateVerifyWebhook
+} from './sumup-simulator'
+
+/**
+ * Vérifie si le mode test est activé
+ */
+function isTestMode(): boolean {
+  return process.env.SUMUP_TEST_MODE === 'true'
+}
+
 export interface SumupCheckoutData {
   amount: number // Montant en euros
   currency?: string // Devise (EUR par défaut)
@@ -37,6 +50,12 @@ export interface SumupCheckoutResponse {
 export async function createSumupCheckout(
   data: SumupCheckoutData
 ): Promise<SumupCheckoutResponse> {
+  // Mode test : utilise le simulateur
+  if (isTestMode()) {
+    return simulateCreateCheckout(data)
+  }
+
+  // Mode production : utilise l'API réelle
   const apiKey = process.env.SUMUP_API_KEY
 
   if (!apiKey) {
@@ -80,6 +99,12 @@ export async function createSumupCheckout(
 export async function getSumupCheckout(
   checkoutId: string
 ): Promise<SumupCheckoutResponse> {
+  // Mode test : utilise le simulateur
+  if (isTestMode()) {
+    return simulateGetCheckout(checkoutId)
+  }
+
+  // Mode production : utilise l'API réelle
   const apiKey = process.env.SUMUP_API_KEY
 
   if (!apiKey) {
@@ -109,6 +134,12 @@ export async function verifySumupWebhook(
   payload: string,
   signature: string
 ): Promise<boolean> {
+  // Mode test : utilise le simulateur (accepte toujours)
+  if (isTestMode()) {
+    return simulateVerifyWebhook(payload, signature)
+  }
+
+  // Mode production : vérifie vraiment la signature
   const webhookSecret = process.env.SUMUP_WEBHOOK_SECRET
 
   if (!webhookSecret) {

@@ -44,6 +44,18 @@ export default async function AdminBouquetsPage() {
               >
                 Bouquets
               </Link>
+              <Link
+                href="/admin/horaires"
+                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"
+              >
+                Horaires
+              </Link>
+              <Link
+                href="/admin/fermetures"
+                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"
+              >
+                Fermetures
+              </Link>
             </div>
           </div>
         </div>

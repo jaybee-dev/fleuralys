@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import type { CreateCommandeInput } from '@/types/commande'
 
 export async function POST(request: NextRequest) {
@@ -14,7 +15,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const supabase = await createClient()
+    // Utiliser le client admin pour insérer des données (contourne les RLS)
+    const supabase = createAdminClient()
 
     // Insérer la commande dans Supabase
     const { data, error } = await supabase
@@ -44,6 +46,10 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       )
     }
+
+    // NOTE: Les emails ne sont PAS envoyés ici
+    // Ils seront envoyés uniquement après confirmation du paiement via le webhook SumUp
+    // Voir /app/api/webhooks/sumup/route.ts
 
     return NextResponse.json({ commande: data }, { status: 201 })
   } catch (error) {

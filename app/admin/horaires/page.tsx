@@ -1,9 +1,11 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import DashboardClient from './DashboardClient'
+import { createAdminClient } from '@/lib/supabase/admin'
+import { HORAIRES_OUVERTURE, type HorairesConfig } from '@/config/horaires'
+import HorairesClient from './HorairesClient'
 
-export default async function AdminDashboardPage() {
+export default async function AdminHorairesPage() {
   const supabase = await createClient()
 
   // Vérifier l'authentification
@@ -15,14 +17,26 @@ export default async function AdminDashboardPage() {
     redirect('/admin/login')
   }
 
-  // Récupérer les commandes
-  const { data: commandes, error } = await supabase
-    .from('commandes')
+  // Charger les horaires depuis la base de données
+  const supabaseAdmin = createAdminClient()
+  const { data: horairesDB } = await supabaseAdmin
+    .from('horaires_ouverture')
     .select('*')
-    .order('created_at', { ascending: false })
+    .order('jour', { ascending: true })
 
-  if (error) {
-    console.error('Erreur lors de la récupération des commandes:', error)
+  // Convertir en format HorairesConfig
+  let horairesInitiaux: HorairesConfig = { ...HORAIRES_OUVERTURE }
+
+  if (horairesDB && horairesDB.length > 0) {
+    for (const row of horairesDB) {
+      horairesInitiaux = {
+        ...horairesInitiaux,
+        [row.jour]: {
+          ouvert: row.ouvert,
+          plages: row.plages || undefined,
+        }
+      }
+    }
   }
 
   return (
@@ -34,7 +48,7 @@ export default async function AdminDashboardPage() {
             <div className="flex space-x-8">
               <Link
                 href="/admin/dashboard"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-primary-600 text-sm font-medium text-neutral-900"
+                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"
               >
                 Commandes
               </Link>
@@ -46,7 +60,7 @@ export default async function AdminDashboardPage() {
               </Link>
               <Link
                 href="/admin/horaires"
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"
+                className="inline-flex items-center px-1 pt-1 border-b-2 border-primary-600 text-sm font-medium text-neutral-900"
               >
                 Horaires
               </Link>
@@ -61,7 +75,7 @@ export default async function AdminDashboardPage() {
         </div>
       </nav>
 
-      <DashboardClient commandes={commandes || []} user={user} />
+      <HorairesClient horairesInitiaux={horairesInitiaux} />
     </div>
   )
 }
