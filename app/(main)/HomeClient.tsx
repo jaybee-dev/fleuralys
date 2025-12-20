@@ -135,7 +135,7 @@ export default function HomeClient({ bouquets }: HomeClientProps) {
             Nos Bouquets
           </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto font-subtitle">
-            Chaque bouquet est cree avec soin en utilisant les fleurs les plus fraiches
+            Chaque bouquet est crée avec soin en utilisant les fleurs les plus fraiches
           </p>
         </div>
 

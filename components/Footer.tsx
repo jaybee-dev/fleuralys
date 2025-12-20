@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-serif font-bold text-white mb-4">
-              Fleurs com'Florie
+              Fleuralys
             </h3>
             <p className="text-sm text-neutral-400">
               Votre fleuriste à Villeneuve-Lès-Maguelone. Compositions florales artisanales pour toutes vos occasions.
@@ -50,7 +50,7 @@ export default function Footer() {
               <li>Tel: <a href="tel:+0467695236
 " className="hover:text-primary-400">04 67 69 52 36
 </a></li>
-              <li>Email: <a href="mailto:contact@fleurs-comflorie.fr" className="hover:text-primary-400">contact@fleurs-comflorie.fr</a></li>
+              <li>Email: <a href="mailto:contact@fleuralys.fr" className="hover:text-primary-400">contact@fleuralys.fr</a></li>
             </ul>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function Footer() {
               Administration
             </Link>
           </div>
-          <p>&copy; {new Date().getFullYear()} Fleurs com'Florie - Fleuriste à Villeneuve-Lès-Maguelone. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} Fleuralys - Fleuriste à Villeneuve-Lès-Maguelone. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

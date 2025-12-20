@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center">
             <Logo size={48} className="mr-3" />
-            <span className="text-xl font-title font-bold text-primary-600">Fleurs com'Florie</span>
+            <span className="text-xl font-title font-bold text-primary-600">Fleuralys</span>
           </Link>
 
           <div className="hidden md:flex space-x-8">

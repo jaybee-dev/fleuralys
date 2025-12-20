@@ -3,6 +3,7 @@
 ## ✅ Optimisations SEO Déjà Implémentées
 
 ### 1. SEO Technique
+
 - ✅ **Sitemap XML** automatique (`/sitemap.xml`)
 - ✅ **Robots.txt** configuré (`/robots.txt`)
 - ✅ **Meta tags** optimisés (title, description, keywords)
@@ -12,6 +13,7 @@
 - ✅ **Lang="fr"** pour indiquer la langue
 
 ### 2. SEO Local
+
 - ✅ **Schema.org LocalBusiness** (type: Florist)
 - ✅ **Localisation** : Villeneuve-Lès-Maguelone, 34750
 - ✅ **Coordonnées GPS** approximatives
@@ -20,6 +22,7 @@
 - ✅ **Adresse structurée** avec microdata
 
 ### 3. Mots-clés Ciblés
+
 - Fleuriste Villeneuve-Lès-Maguelone
 - Compositions florales Hérault
 - Bouquets sur mesure Montpellier
@@ -27,6 +30,7 @@
 - Fleurs fraîches sud de la France
 
 ### 4. Contenu SEO
+
 - ✅ Balises H1, H2, H3 structurées
 - ✅ Alt text sur les images (à compléter avec vraies images)
 - ✅ URLs descriptives et propres
@@ -35,6 +39,7 @@
 ## 📊 Score SEO Actuel
 
 ### Points Forts
+
 - ✅ Structure technique solide
 - ✅ SEO local bien configuré
 - ✅ Schema.org complet
@@ -44,13 +49,16 @@
 ### À Améliorer (Actions Recommandées)
 
 #### Priorité HAUTE
+
 1. **Google My Business**
+
    - Créer/revendiquer la fiche Google My Business
    - Ajouter photos, horaires, description
    - Demander des avis clients
    - **Impact SEO : ⭐⭐⭐⭐⭐**
 
 2. **Compléter les Informations**
+
    - Adresse exacte dans [components/Footer.tsx](components/Footer.tsx:47)
    - Numéro de téléphone dans [app/schema.ts](app/schema.ts:9)
    - Horaires réels dans [app/schema.ts](app/schema.ts:23)
@@ -63,13 +71,16 @@
    - **Impact SEO : ⭐⭐⭐⭐**
 
 #### Priorité MOYENNE
+
 4. **Réseaux Sociaux**
+
    - Créer profil Instagram pour Fleurs com'Florie
    - Créer page Facebook
    - Mettre à jour les liens dans [app/schema.ts](app/schema.ts:36)
    - **Impact SEO : ⭐⭐⭐**
 
 5. **Avis Clients**
+
    - Implémenter un système d'avis
    - Intégrer les avis Google
    - Afficher les témoignages
@@ -82,7 +93,9 @@
    - **Impact SEO : ⭐⭐⭐**
 
 #### Priorité BASSE
+
 7. **Performance**
+
    - Optimiser les images (WebP, lazy loading)
    - Activer le cache
    - Minimiser JS/CSS
@@ -96,6 +109,7 @@
 ## 🎯 Actions Immédiates (Cette Semaine)
 
 ### 1. Google My Business (30 min)
+
 ```
 1. Aller sur google.com/business
 2. Créer la fiche "Fleurs com'Florie"
@@ -108,6 +122,7 @@
 ```
 
 ### 2. Compléter les Infos (15 min)
+
 ```typescript
 // Dans app/schema.ts - ligne 9
 telephone: '+33-4-XX-XX-XX-XX', // Votre vrai numéro
@@ -120,8 +135,9 @@ streetAddress: 'Votre adresse complète',
 ```
 
 ### 3. Instagram (1h)
+
 ```
-1. Créer @fleurscomflorie
+1. Créer @fleuralys
 2. Publier 9 premières photos
 3. Bio : "🌸 Fleuriste à Villeneuve-Lès-Maguelone
          Compositions artisanales
@@ -132,12 +148,15 @@ streetAddress: 'Votre adresse complète',
 ## 📈 Suivi SEO (Outils Gratuits)
 
 ### Outils Recommandés
+
 - **Google Search Console** (gratuit, essentiel)
+
   - Surveiller les performances
   - Voir les mots-clés
   - Détecter les erreurs
 
 - **Google Analytics** (gratuit)
+
   - Trafic du site
   - Comportement utilisateurs
   - Conversions
@@ -148,6 +167,7 @@ streetAddress: 'Votre adresse complète',
   - Photos populaires
 
 ### Métriques à Suivre
+
 - Position sur "fleuriste villeneuve-lès-maguelone"
 - Nombre de visiteurs organiques
 - Taux de conversion (commandes)
@@ -157,12 +177,15 @@ streetAddress: 'Votre adresse complète',
 ## 🌍 SEO Local - Zone de Chalandise
 
 ### Mots-clés Locaux à Cibler
+
 1. **Primaire**
+
    - fleuriste villeneuve-lès-maguelone
    - fleuriste 34750
    - fleurs villeneuve maguelone
 
 2. **Secondaire**
+
    - fleuriste montpellier sud
    - livraison fleurs villeneuve
    - bouquet villeneuve-lès-maguelone
@@ -173,6 +196,7 @@ streetAddress: 'Votre adresse complète',
    - "commander bouquet villeneuve maguelone"
 
 ### Villes Environnantes à Mentionner
+
 - Montpellier (7 km)
 - Palavas-les-Flots (5 km)
 - Lattes (3 km)
@@ -182,6 +206,7 @@ streetAddress: 'Votre adresse complète',
 ## ✅ Checklist de Déploiement SEO
 
 Avant de mettre en ligne :
+
 - [ ] Google My Business créé et vérifié
 - [ ] Adresse et téléphone complétés
 - [ ] Instagram créé avec 9+ photos
@@ -195,6 +220,7 @@ Avant de mettre en ligne :
 ## 📞 Contact et Support SEO
 
 Pour améliorer le SEO :
+
 1. Lire ce guide
 2. Implémenter les actions priorité HAUTE
 3. Suivre les métriques mensuellement

@@ -7,7 +7,7 @@ export const Logo: React.FC<{ className?: string; size?: number }> = ({
   return (
     <img
       src="/images/logo.png"
-      alt="Fleurs Com'Florie"
+      alt="Fleuralys"
       width={size}
       height={size}
       className={className}

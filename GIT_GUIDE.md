@@ -120,7 +120,7 @@ git branch -D dev
 
 1. Va sur [github.com](https://github.com)
 2. Clique sur "New repository"
-3. Nom suggéré: `fleurs-comflorie`
+3. Nom suggéré: `fleuralys`
 4. **NE COCHE PAS** "Initialize with README" (tu en as déjà un)
 5. Clique "Create repository"
 
@@ -128,7 +128,7 @@ git branch -D dev
 
 ```bash
 # Ajouter le remote
-git remote add origin https://github.com/TON_USERNAME/fleurs-comflorie.git
+git remote add origin https://github.com/TON_USERNAME/fleuralys.git
 
 # Vérifier
 git remote -v
@@ -389,18 +389,22 @@ Taille du dépôt: ~11,391 lignes de code
 ## 🎯 Prochaines Étapes Suggérées
 
 1. **Créer un dépôt GitHub** (optionnel)
+
    - Backup dans le cloud
    - Collaboration facilitée
    - Historique accessible partout
 
 2. **Créer une branche `dev`** (recommandé)
+
    ```bash
    git checkout -b dev
    ```
+
    - Développer sur `dev`
    - Fusionner dans `main` uniquement quand stable
 
 3. **Tag la version 1.0.0**
+
    ```bash
    git tag -a v1.0.0 -m "Version 1.0.0 - Release initiale"
    ```

@@ -1,6 +1,6 @@
 # Site Web Fleuriste
 
-Site web moderne pour une fleuriste avec système de commande en ligne et paiement via LemonSqueezy.
+Site web moderne pour une fleuriste avec système de commande en ligne et paiement via SumUp.
 
 ## Fonctionnalités
 
@@ -8,7 +8,7 @@ Site web moderne pour une fleuriste avec système de commande en ligne et paieme
 - Galerie de compositions florales
 - Blog avec liens vers Instagram
 - Formulaire de commande "Pickup" avec validation
-- Paiement en ligne via LemonSqueezy
+- Paiement en ligne via SumUp
 - Stockage des commandes dans Supabase
 
 ## Stack Technique
@@ -16,7 +16,7 @@ Site web moderne pour une fleuriste avec système de commande en ligne et paieme
 - **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes
 - **Base de données**: Supabase
-- **Paiements**: LemonSqueezy
+- **Paiements**: SumUp
 - **Validation**: React Hook Form + Zod
 - **Hébergement**: Vercel
 
