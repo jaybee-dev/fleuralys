@@ -1,10 +1,10 @@
 'use client'
 
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { updateSimulatedCheckoutStatus } from '@/lib/sumup-simulator'
 
-export default function PaymentSimulatePage() {
+function PaymentSimulateContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [processing, setProcessing] = useState(false)
@@ -163,5 +163,13 @@ export default function PaymentSimulatePage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PaymentSimulatePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Chargement...</div>}>
+      <PaymentSimulateContent />
+    </Suspense>
   )
 }
