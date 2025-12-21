@@ -14,7 +14,7 @@ export interface HoraireJour {
   plages?: PlageHoraire[]
 }
 
-export interface HorairesConfig {
+export interface HorairesConfig extends Record<string, HoraireJour> {
   lundi: HoraireJour
   mardi: HoraireJour
   mercredi: HoraireJour
