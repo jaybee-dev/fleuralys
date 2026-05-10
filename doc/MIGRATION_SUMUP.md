@@ -64,8 +64,8 @@
 
 ```bash
 # Supabase (existant)
-NEXT_PUBLIC_SUPABASE_URL=https://nxhdclyqqrkzsliczkre.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_URL=https://your_project_ref.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 # Sumup (nouveau)
 SUMUP_API_KEY=sup_sk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
